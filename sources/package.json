@@ -1,0 +1,31 @@
+{
+  "name": "modular",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "André Marques",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel": "^6.23.0",
+    "browser-sync": "^2.17.5",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-index": "0.2.0",
+    "gulp-inject-partials": "^1.0.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "4.0.2",
+    "gulp-wrap": "^0.14.0"
+  },
+  "dependencies": {
+    "gulp-concat": "^2.6.1",
+    "gulp-javascript-obfuscator": "^1.1.4"
+  }
+}
