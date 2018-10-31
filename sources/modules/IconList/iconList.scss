@@ -1,0 +1,15 @@
+.iconList {
+
+    ul {
+        display: flex;
+        text-align: center;
+    }
+
+    figure {
+        width: 100px;
+        height: 100px;
+        background: $grey;
+        border-radius: 50%;
+    }
+
+}

@@ -1,11 +1,47 @@
 .mainNav {
+    background: $lightPink;
 
-    h1 {
-        width: 100%;
-        color: white;
-        font-size: 40px;
-        text-align: center;
-        padding: 80px 0;
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    figure {
+        width: 233px;
+        height: 70px;
+
+        img {
+            width: 100%;
+        }
+
+    }
+
+    ul {
+        display: flex;
+
+        li {
+            @include fontS;
+            color: $black;
+            text-transform: uppercase;
+            margin-right: 30px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &:hover {
+                color: $blue;
+            }
+
+            a {
+                display: block;
+            }
+
+        }
+
     }
 
 }
