@@ -1,0 +1,49 @@
+.profile {
+    background: $pink;
+    @include fontM;
+
+    h2 {
+        @include fontGiant;
+        font-weight: $fontBold;
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 3px;
+        color: $white;
+        margin-bottom: 30px;
+    }
+
+    article {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    figure {
+        width: 327px;
+        height: 327px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+            height: 100%;
+        }
+
+    }
+
+    .resume {
+        width: 50%;
+        margin-left: 30px;
+
+        p {
+            color: $black;
+            margin-bottom: 30px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+        }
+
+    }
+
+}

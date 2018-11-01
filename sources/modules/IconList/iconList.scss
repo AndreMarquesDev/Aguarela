@@ -2,14 +2,34 @@
 
     ul {
         display: flex;
+        justify-content: center;
         text-align: center;
+
+        li {
+            max-width: 220px;
+            padding: 0 20px;
+        }
+
     }
 
     figure {
         width: 100px;
         height: 100px;
-        background: $grey;
+        background: $lightPink;
         border-radius: 50%;
+        margin: 0 auto 20px;
+
+        img {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+    }
+
+    p {
+        text-transform: uppercase;
+        letter-spacing: 2px;
     }
 
 }
