@@ -1,8 +1,8 @@
 "use strict";
 
-var project = project || {};
+var Aguarela = Aguarela || {};
 
-project.mainNav = function () {
+Aguarela.mainNav = function () {
   return {
     init: function init(element, data) {
       var view = this;

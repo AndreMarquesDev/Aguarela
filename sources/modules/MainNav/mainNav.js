@@ -1,6 +1,6 @@
-const project = project || {};
+const Aguarela = Aguarela || {};
 
-project.mainNav = (() => {
+Aguarela.mainNav = (() => {
 
     return {
 

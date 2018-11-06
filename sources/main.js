@@ -1,6 +1,6 @@
-let project = project || {};
+let Aguarela = Aguarela || {};
 
-project.main = (() => {
+Aguarela.main = (() => {
 
     return {
         init: (selector) => {
@@ -10,13 +10,13 @@ project.main = (() => {
                 const data = $(elem).data(),
                       script = data.script;
 
-                if (!project[script]) return;
+                if (!Aguarela[script]) return;
 
-                if (typeof project[script] === 'function') {
-                    const obj = new project[script];
+                if (typeof Aguarela[script] === 'function') {
+                    const obj = new Aguarela[script];
                     obj.init(elem, data);
-                } else if (typeof project[script] === 'object') {
-                    project[script].init(elem, data);
+                } else if (typeof Aguarela[script] === 'object') {
+                    Aguarela[script].init(elem, data);
                 }
             });
         }
@@ -24,5 +24,5 @@ project.main = (() => {
 }) ();
 
 document.addEventListener('DOMContentLoaded', () => {
-    project.main.init();
+    Aguarela.main.init();
 });

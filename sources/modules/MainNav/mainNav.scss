@@ -45,4 +45,11 @@
 
     }
 
+    @include mq(0, 1023px) {
+        figure {
+            width: 133px;
+            height: 42px;
+        }
+    }
+
 }

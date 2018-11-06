@@ -29,7 +29,45 @@
 
     p {
         text-transform: uppercase;
+        line-height: 23px;
         letter-spacing: 2px;
+    }
+
+    @include tablet {
+        ul {
+            flex-wrap: wrap;
+
+            li {
+                max-width: 50%;
+
+                &:first-of-type {
+                    margin-bottom: 40px;
+                }
+
+            }
+
+        }
+    }
+
+    @include mobile {
+        ul li {
+            padding: 0 10px;
+        }
+
+        p {
+            letter-spacing: 0;
+        }
+
+        figure {
+            width: 70px;
+            height: 70px;
+
+            img {
+                width: 75%;
+                height: 75%;
+            }
+
+        }
     }
 
 }

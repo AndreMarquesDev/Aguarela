@@ -46,4 +46,21 @@
 
     }
 
+    @include tablet {
+        article {
+            flex-wrap: wrap;
+        }
+
+        figure {
+            width: 250px;
+            height: 250px;
+        }
+
+        .resume {
+            flex-basis: 100%;
+            margin-top: 40px;
+        }
+
+    }
+
 }

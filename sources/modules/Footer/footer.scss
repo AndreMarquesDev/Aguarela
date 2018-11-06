@@ -31,5 +31,29 @@ footer {
 
     }
 
+    @include tablet {
+        padding: 10px 0 20px;
+
+        .wrapper {
+            flex-wrap: wrap;
+            flex-direction: column-reverse;
+
+            > a {
+                display: none;
+            }
+
+        }
+
+        p {
+            font-size: 0;
+
+            a {
+                display: block;
+                font-size: 15px;
+            }
+
+        }
+
+    }
 
 }

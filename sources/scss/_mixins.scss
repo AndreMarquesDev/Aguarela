@@ -20,6 +20,12 @@
 	}
 }
 
+@mixin mobile() {
+	@media (min-width: 0) and (max-width: 511px) {
+		@content;
+	}
+}
+
 // Fonts
 
 @mixin fontGiant() {
