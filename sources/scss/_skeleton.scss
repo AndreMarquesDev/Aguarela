@@ -14,6 +14,11 @@ body {
     font-family: $font;
     font-weight: $fontRegular;
     -webkit-font-smoothing: antialiased;
+
+    &.noScroll {
+        overflow: hidden;
+    }
+
 }
 
 .wrapper {

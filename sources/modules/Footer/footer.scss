@@ -42,14 +42,18 @@ footer {
                 display: none;
             }
 
-        }
+            p {
+                font-size: 0;
 
-        p {
-            font-size: 0;
+                a {
+                    display: block;
+                    font-size: 15px;
+                }
 
-            a {
-                display: block;
-                font-size: 15px;
+            }
+
+            img {
+                margin-left: 0;
             }
 
         }

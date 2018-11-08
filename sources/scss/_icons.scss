@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'aguarelaIcons';
+    src:  url('fonts/aguarelaIcons.eot?f4yref');
+    src:  url('fonts/aguarelaIcons.eot?f4yref#iefix') format('embedded-opentype'),
+      url('fonts/aguarelaIcons.ttf?f4yref') format('truetype'),
+      url('fonts/aguarelaIcons.woff?f4yref') format('woff'),
+      url('fonts/aguarelaIcons.svg?f4yref#aguarelaIcons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="iconAguarela-"], [class*=" iconAguarela-"] {
+    // use !important to prevent issues with browser extensions that change fonts //
+    font-family: 'aguarelaIcons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    // Better Font Rendering //
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.iconAguarela-menu:before {
+    content: '\e902';
+}
+.iconAguarela-cross:before {
+    content: '\e912';
+}
+.iconAguarela-arrowLeft:before {
+    content: '\e90e';
+}
+.iconAguarela-arrowRight:before {
+    content: '\e90f';
+}
+.iconAguarela-arrowDown:before {
+    content: '\e910';
+}
