@@ -1,0 +1,59 @@
+.wot {
+    background: $lightBlue;
+    @include fontM;
+    color: $white;
+
+    .wrapper {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    article, aside {
+        width: 40%;
+    }
+
+    article p {
+        margin-bottom: 30px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+    }
+
+    aside {
+        text-align: right;
+
+        p {
+            @include fontXL;
+            font-weight: $fontBold;
+            text-align: left;
+            border-bottom: 2px solid $white;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+        }
+
+    }
+
+
+    @include tablet {
+        .wrapper {
+            flex-direction: column;
+        }
+
+        article, aside {
+            width: 100%;
+        }
+
+        article p:last-child {
+            margin-bottom: 30px;
+        }
+
+        aside {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+    }
+
+}

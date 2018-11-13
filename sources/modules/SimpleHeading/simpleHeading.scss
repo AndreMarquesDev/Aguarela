@@ -1,0 +1,13 @@
+.simpleHeading {
+    @include fontM;
+    color: $pink;
+    font-weight: $fontBold;
+    text-align: center;
+
+    h1 {
+        @include fontGiant;
+        text-transform: uppercase;
+        letter-spacing: 10px;
+    }
+
+}

@@ -60,11 +60,12 @@ table {
 	border-spacing: 0;
 }
 
-i {
+i, em {
 	font-style: italic;
 }
-b {
-	font-weight: 700;
+
+strong, b {
+    font-weight: 700;
 }
 
 input, input:before, input:after {

@@ -83,7 +83,7 @@
     letter-spacing: -0.1px;
     @include mq(0, 767px) {
         font-size: $fontMMobile;
-        line-height: 26px;
+        line-height: 24px;
         letter-spacing: -0.1px;
     }
 }
@@ -92,18 +92,10 @@
     font-family: $font;
     font-size: $fontS;
     line-height: 24px;
-    @include mq(0, 767px) {
-        font-size: $fontSMobile;
-        line-height: 24px;
-    }
 }
 
 @mixin fontXS() {
     font-family: $font;
     font-size: $fontXS;
     line-height: 17px;
-    @include mq(0, 767px) {
-        font-size: $fontXSMobile;
-        line-height: 17px;
-    }
 }

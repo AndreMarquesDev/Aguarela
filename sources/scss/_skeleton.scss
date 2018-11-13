@@ -105,14 +105,7 @@ section {
 }
 
 a {
+    color: inherit;
     text-decoration: none;
     cursor: pointer;
-}
-
-strong, b {
-    font-weight: $fontBold;
-}
-
-em {
-    font-style: italic;
 }
