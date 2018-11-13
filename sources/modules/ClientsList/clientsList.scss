@@ -1,0 +1,76 @@
+.clientsList {
+    @include fontS;
+    text-align: center;
+
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    h2 {
+        flex-basis: 100%;
+        @include fontGiant;
+        color: $pink;
+        font-weight: $fontBold;
+        text-transform: uppercase;
+        letter-spacing: 10px;
+        margin-bottom: 70px;
+    }
+
+    article {
+        max-width: 152px;
+        margin-right: 70px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+    }
+
+    a {
+        height: 100%;
+
+        &:hover figure {
+            transform: scale(1.1);
+        }
+
+    }
+
+    figure {
+        width: 100%;
+        margin-bottom: 20px;
+        overflow: hidden;
+        @include transition ($duration: .3s);
+    }
+
+    p {
+        color: $mediumGrey;
+    }
+
+    @include tablet {
+        line-height: 21px;
+
+        .wrapper {
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+        }
+
+        article {
+            max-width: 250px;
+            margin: 0 auto 40px;
+
+            &:last-child {
+                margin: 0 auto;
+            }
+
+        }
+
+    }
+
+}
