@@ -1,0 +1,92 @@
+.blocksList {
+    @include fontS;
+    color: $white;
+    text-align: center;
+
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    h2 {
+        flex-basis: 100%;
+        @include fontGiant;
+        color: $lightBlue;
+        font-weight: $fontBold;
+        text-transform: uppercase;
+        letter-spacing: 10px;
+        margin-bottom: 70px;
+    }
+
+    article {
+        max-width: 250px;
+        background: $lightBlue;
+        letter-spacing: 1px;
+        margin: 0 10px 40px;
+        padding: 40px;
+    }
+
+    small {
+        @include fontXS;
+    }
+
+    &[data-theme="yellow"] {
+        background: $lightYellow;
+        @include fontM;
+        color: $grey;
+
+        article {
+            max-width: 185px;
+            min-height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            background: $white;
+            padding: 60px 20px;
+        }
+
+    }
+
+    @include tablet {
+
+        h2 {
+            margin-bottom: 30px;
+        }
+
+    }
+
+    @include mobile {
+        article {
+            max-width: 100%;
+            margin: 0 0 20px;
+            padding: 20px;
+        }
+
+        &[data-theme="yellow"] {
+
+            .wrapper {
+                justify-content: space-between;
+            }
+
+            article {
+                max-width: 48%;
+                min-height: 150px;
+                padding: 40px 10px;
+            }
+
+        }
+
+    }
+
+    @include mq (0, 389px) {
+
+        &[data-theme="yellow"] article {
+            max-width: 100%;
+            padding: 20px 10px;
+        }
+
+    }
+
+}

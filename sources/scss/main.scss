@@ -9,12 +9,4 @@
 
 // Module imports //
 
-@import '../modules/ClientsList/clientsList';
-@import '../modules/ContactForm/contactForm';
-@import '../modules/Footer/footer';
-@import '../modules/Hero/hero';
-@import '../modules/IconList/iconList';
-@import '../modules/MainNav/mainNav';
-@import '../modules/Profile/profile';
-@import '../modules/SimpleHeading/simpleHeading';
-@import '../modules/WOT/wot';
+@import '../modules/**/*.scss';

@@ -1,0 +1,93 @@
+.table {
+    @include fontL;
+    background: $pink;
+    font-weight: $fontBold;
+    text-align: center;
+
+    table {
+        max-width: 980px;
+        width: 100%;
+        display: inline-block;
+        text-align: left;
+        margin-bottom: 20px;
+        white-space: nowrap;
+        overflow-x: auto;
+
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+        }
+
+        &::-webkit-scrollbar-track {
+            border-radius: 10px;
+            background-color: $white;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $grey;
+            border: 2px solid $white;
+            border-radius: 10px;
+        }
+
+        thead {
+            color: $white;
+            text-transform: uppercase;
+        }
+
+        tbody tr {
+            background: $white;
+            color: $lightBlue;
+
+            &:nth-child(even) {
+                background: $lightBlue;
+                color: $white;
+            }
+
+        }
+
+        th, td {
+            width: 16%;
+            vertical-align: middle;
+            padding: 20px;
+
+            &.filled:before {
+                content: '';
+                width: 25px;
+                height: 25px;
+                display: block;
+                position: relative;
+                left: 20px;
+                border-radius: 50%;
+                border: 10px solid;
+            }
+
+        }
+
+        td:first-child {
+            width: 48%;
+        }
+
+    }
+
+    @include tablet {
+        @include fontM;
+
+        table td {
+            width: 10%;
+        }
+
+        table td:first-child {
+            width: 35%;
+        }
+
+        table td.filled:before {
+            width: 20px;
+            height: 20px;
+            left: 10px;
+            border: 7.5px solid;
+        }
+
+    }
+
+}
