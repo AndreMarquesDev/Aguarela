@@ -1,0 +1,77 @@
+.imageSlider {
+    background: $lightBlue;
+    @include fontM;
+    color: $white;
+    text-align: center;
+
+    h3 {
+        @include fontXXL;
+        text-transform: uppercase;
+        letter-spacing: 10px;
+        margin-bottom: 20px;
+    }
+
+    .slick-slide {
+        margin: 0 20px;
+    }
+
+    li {
+        height: 450px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+
+        img {
+            width: auto;
+            height: 100%;
+        }
+
+        p {
+            width: 100%;
+            display: none;
+            @include fontXL;
+            color: $white;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: auto;
+            z-index: 1;
+        }
+
+        &:hover {
+            &:before {
+                content: '';
+                width: 100%;
+                height: 100%;
+                display: block;
+                background: rgba($color: $black, $alpha: 0.4);
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+            }
+
+            p {
+                display: block;
+            }
+
+        }
+
+    }
+
+    @include tablet {
+        .wrapper {
+            padding: 0 40px;
+        }
+
+        .slick-slide {
+            margin: 0 10px;
+        }
+
+        li {
+            height: 300px;
+        }
+
+    }
+
+}

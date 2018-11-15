@@ -10,6 +10,27 @@
 
     article, aside {
         width: 40%;
+
+        &:only-child {
+            width: 100%;
+            text-align: center;
+
+            p {
+                max-width: 875px;
+                margin: auto;
+            }
+
+        }
+
+    }
+
+    h2 {
+        @include fontXL;
+        color: $lightYellow;
+        font-weight: $fontBold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
     }
 
     article p {
