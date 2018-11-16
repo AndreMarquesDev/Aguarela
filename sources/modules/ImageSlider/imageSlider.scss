@@ -21,7 +21,7 @@
         overflow: hidden;
         cursor: pointer;
 
-        img {
+        img, video {
             width: auto;
             height: 100%;
         }
@@ -29,17 +29,18 @@
         p {
             width: 100%;
             display: none;
-            @include fontXL;
-            color: $white;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
+            @include fontXL;
+            color: $white;
+            font-weight: $fontBold;
             margin: auto;
             z-index: 1;
         }
 
         &:hover {
-            &:before {
+            &:not(.noOverlay):before {
                 content: '';
                 width: 100%;
                 height: 100%;
@@ -70,8 +71,41 @@
 
         li {
             height: 300px;
+
+            p {
+                width: 75%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
         }
 
     }
 
+    @include mq (0, 420px) {
+
+        li {
+            max-width: 300px;
+
+            img {
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            video {
+                width: calc(100% - 80px); // 80px being wrapper's padding
+            }
+
+        }
+
+    }
+
+}
+
+.coiso {
+    width: 100%;
+    height: 500px;
+    background: lightgreen;
+    margin-bottom: 200px;
 }
