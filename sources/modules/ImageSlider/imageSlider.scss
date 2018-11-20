@@ -21,6 +21,17 @@
         overflow: hidden;
         cursor: pointer;
 
+        &:not(.noOverlay):before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            @include transition ($duration: .35s);
+        }
+
         img, video {
             width: auto;
             height: 100%;
@@ -41,14 +52,7 @@
 
         &:hover {
             &:not(.noOverlay):before {
-                content: '';
-                width: 100%;
-                height: 100%;
-                display: block;
                 background: rgba($color: $black, $alpha: 0.4);
-                position: absolute;
-                top: 0;
-                left: 0;
                 z-index: 1;
             }
 
@@ -101,11 +105,4 @@
 
     }
 
-}
-
-.coiso {
-    width: 100%;
-    height: 500px;
-    background: lightgreen;
-    margin-bottom: 200px;
 }

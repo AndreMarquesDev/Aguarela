@@ -6,58 +6,54 @@ Aguarela.imageSlider = function () {
   return {
     init: function init(element) {
       var view = this;
-      view.el = $(element);
-      view.ele = element;
+      view.$el = $(element);
+      view.el = element;
       view.initSlider();
-      view.teste();
+      view.playWhenVisible();
     },
     initSlider: function initSlider() {
       var view = this;
-      view.sliderContainer = view.el.find('.imageSlider__sliderContainer');
-      view.sliderContainer.on('init', function () {
-        // Autoplay if video is the active slide
-        !!view.el.find('.slick-current video').length && window.innerWidth > 767 && view.el.find('.slick-current video')[0].play();
-      });
+      view.sliderContainer = view.$el.find('.imageSlider__sliderContainer');
       view.sliderContainer.slick({
         slidesToShow: 3,
         centerMode: true,
         variableWidth: true
       }).on('beforeChange', function () {
-        !!view.el.find('.slick-current video').length && view.el.find('.slick-current video')[0].pause();
+        !!view.el.querySelector('.slick-current video') && view.el.querySelector('.slick-current video').pause();
       }).on('afterChange', function () {
-        !!view.el.find('.slick-current video').length && window.innerWidth > 767 && view.el.find('.slick-current video')[0].play();
+        !!view.el.querySelector('.slick-current video') && window.innerWidth > 767 && view.el.querySelector('.slick-current video').play();
       });
     },
-    teste: function teste() {
+    playWhenVisible: function playWhenVisible() {
       var view = this;
-      var coiso;
-      !!view.ele.querySelector('.coiso') && (coiso = view.ele.querySelector('.coiso'));
+      var video,
+          wasPaused = false;
 
-      var isElementInViewport = function isElementInViewport(el) {
-        var elViewportPosition = el.getBoundingClientRect();
-        return elViewportPosition.top >= 0 && elViewportPosition.left >= 0 && elViewportPosition.bottom <= (window.innerHeight || document.documentElement.clientHeight) && elViewportPosition.right <= (window.innerWidth || document.documentElement.clientWidth);
+      var isInViewport = function isInViewport(element) {
+        var elementTop = element.getBoundingClientRect().top + element.offsetHeight,
+            elementBottom = elementTop + element.offsetHeight,
+            viewportTop = window.scrollY,
+            viewportBottom = viewportTop + window.innerHeight;
+        return elementBottom > viewportTop && elementTop < viewportBottom;
       };
 
-      var onVisibilityChange = function onVisibilityChange(el, callback) {
-        var visible;
-        return function () {
-          if (isElementInViewport(el) !== visible) {
-            visible = isElementInViewport(el);
-            typeof callback == 'function' && callback();
-          }
-        };
-      };
+      var startVideo = function startVideo() {
+        video = view.el.querySelector('.slick-current video');
+        if (video && window.innerWidth > 767) isInViewport(video) ? video.play() : video.pause();
+      }; // Don't autoplay video if it was paused at least once, wether by user click or any other cause
 
-      var isVisible = onVisibilityChange(coiso, function () {
-        console.log('ta?');
+
+      if (view.el.querySelector('video')) view.el.querySelectorAll('video').forEach(function (element) {
+        element.addEventListener('pause', function (event) {
+          !!event.target.closest('.slick-current') && (wasPaused = true);
+        });
       });
-
-      if (window.addEventListener && !!coiso) {
-        addEventListener('DOMContentLoaded', isVisible, false);
-        addEventListener('load', isVisible, false);
-        addEventListener('scroll', isVisible, false);
-        addEventListener('resize', isVisible, false);
-      }
+      window.addEventListener('resize', function () {
+        return !wasPaused && startVideo();
+      });
+      window.addEventListener('scroll', function () {
+        return !wasPaused && startVideo();
+      });
     }
   };
 };

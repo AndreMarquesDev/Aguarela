@@ -6,75 +6,60 @@ Aguarela.imageSlider = (() => {
 
         init: function (element) {
             const view = this;
-                view.el = $(element);
-                view.ele = element;
+                view.$el = $(element);
+                view.el = element;
 
                 view.initSlider();
-                view.teste();
+                view.playWhenVisible();
         },
 
         initSlider: function () {
             const view = this;
 
-            view.sliderContainer = view.el.find('.imageSlider__sliderContainer');
-
-            view.sliderContainer.on('init', () => {
-                // Autoplay if video is the active slide
-                (!!view.el.find('.slick-current video').length && window.innerWidth > 767) && view.el.find('.slick-current video')[0].play()
-            });
+            view.sliderContainer = view.$el.find('.imageSlider__sliderContainer');
 
             view.sliderContainer.slick({
                 slidesToShow: 3,
                 centerMode: true,
                 variableWidth: true
             }).on('beforeChange', () => {
-                (!!view.el.find('.slick-current video').length) && view.el.find('.slick-current video')[0].pause();
+                !!view.el.querySelector('.slick-current video') && view.el.querySelector('.slick-current video').pause();
             }).on('afterChange', () => {
-                (!!view.el.find('.slick-current video').length && window.innerWidth > 767) && view.el.find('.slick-current video')[0].play();
+                (!!view.el.querySelector('.slick-current video') && window.innerWidth > 767) && view.el.querySelector('.slick-current video').play();
             });
 
         },
 
-        teste: function () {
+        playWhenVisible: function () {
             const view = this;
-            let coiso;
+            let video,
+                wasPaused = false;
 
-            !!view.ele.querySelector('.coiso') && (coiso = view.ele.querySelector('.coiso'));
+            const isInViewport = (element) => {
+                const elementTop = element.getBoundingClientRect().top + element.offsetHeight,
+                    elementBottom = elementTop + element.offsetHeight,
+                    viewportTop = window.scrollY,
+                    viewportBottom = viewportTop + window.innerHeight;
+                return elementBottom > viewportTop && elementTop < viewportBottom;
+            };
 
-             const isElementInViewport = el => {
-
-                const elViewportPosition = el.getBoundingClientRect();
-
-                return (
-                    elViewportPosition.top >= 0 &&
-                    elViewportPosition.left >= 0 &&
-                    elViewportPosition.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                    elViewportPosition.right <= (window.innerWidth || document.documentElement.clientWidth)
-                );
+            const startVideo = () => {
+                video = view.el.querySelector('.slick-current video');
+                if (video && window.innerWidth > 767) isInViewport(video) ? video.play() : video.pause();
             }
 
-            const onVisibilityChange = (el, callback) => {
-                let visible;
-                return () => {
-                    if (isElementInViewport(el) !== visible) {
-                        visible = isElementInViewport(el);
-                        (typeof callback == 'function') && callback();
-                    }
-                }
-            }
-
-            const isVisible = onVisibilityChange(coiso, () => {
-                console.log('ta?')
+            // Don't autoplay video if it was paused at least once, wether by user click or any other cause
+            if (view.el.querySelector('video')) view.el.querySelectorAll('video').forEach(element => {
+                element.addEventListener('pause', (event) => {
+                    !!event.target.closest('.slick-current') && (wasPaused = true)
+                })
             });
 
-            if (window.addEventListener && !!coiso) {
-                addEventListener('DOMContentLoaded', isVisible, false);
-                addEventListener('load', isVisible, false);
-                addEventListener('scroll', isVisible, false);
-                addEventListener('resize', isVisible, false);
-            }
+            window.addEventListener('resize', () => !wasPaused && startVideo())
+            window.addEventListener('scroll', () => !wasPaused && startVideo())
 
         }
+
     }
 
 });
