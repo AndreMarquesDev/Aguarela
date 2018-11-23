@@ -4,31 +4,43 @@
     color: $white;
     text-align: center;
 
-    h3 {
-        @include fontXXL;
+    h2 {
+        @include fontGiant;
         text-transform: uppercase;
         letter-spacing: 10px;
         margin-bottom: 20px;
     }
 
-    .img-comp-container {
+    &__container {
+        width: 260px;
+        height: 700px;
+        display: inline-block;
         position: relative;
-        height: 200px; // should be the same height as the images
+        margin-bottom: 50px;
+
+        &[data-shape="square"], &[data-shape="square"] figure img {
+            width: 350px;
+            height: 550px;
+        }
+
     }
 
-    .img-comp-img {
+    figure {
         position: absolute;
+        top: 0;
+        left: 0;
         width: auto;
         height: auto;
         overflow:hidden;
     }
 
-    .img-comp-img img {
-        display:block;
-        vertical-align:middle;
+    img {
+        display: block;
+        width: 260px;
+        height: 700px;
     }
 
-    .img-comp-slider {
+    &__slideButton {
         position: absolute;
         z-index:9;
         cursor: ew-resize;
