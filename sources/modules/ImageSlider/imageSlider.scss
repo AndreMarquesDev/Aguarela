@@ -4,11 +4,13 @@
     color: $white;
     text-align: center;
 
+    margin: 200px 0;
+
     h3 {
         @include fontXXL;
         text-transform: uppercase;
         letter-spacing: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
     }
 
     .slick-slide {
@@ -32,7 +34,7 @@
             @include transition ($duration: .35s);
         }
 
-        img, video {
+        img, video, iframe {
             width: auto;
             height: 100%;
         }
