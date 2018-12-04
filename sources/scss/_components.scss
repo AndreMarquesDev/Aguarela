@@ -7,10 +7,35 @@
     border: 1px solid $white;
     border-radius: 10px;
     padding: 10px 25px;
-    @include transition;
+    @include transition ($ease: ease-in-out);
+    box-shadow: $boxShadow;
 
     &:hover {
-        background: #efe4c3;
+        box-shadow: $boxShadowHover;
+    }
+
+}
+
+// Animated link underline //
+
+.link {
+    position: relative;
+
+    &:after {
+        content: '';
+        width: 0;
+        height: 2.5px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        background: rgba($black, .7);
+        @include transition ($property: width, $duration: .3s, $ease: ease-out);
+    }
+
+    &:hover:after, &:focus:after, &:active:after {
+        width: 100%;
+        left: 0;
+        right: auto;
     }
 
 }

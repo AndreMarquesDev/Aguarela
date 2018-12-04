@@ -14,124 +14,56 @@ Aguarela.imageComparison = function () {
       var view = this;
       view.sliderButton = view.el.querySelectorAll('.imageComparison__sliderButton');
     },
-    initComparison: function initComparison(element) {
+    initComparison: function initComparison() {
       var view = this;
-      view.sliderButton.forEach(function (element) {
-        var sliderButtonWidth = element.getBoundingClientRect().width,
-            imageBefore = element.nextElementSibling,
-            width = imageBefore.getBoundingClientRect().width,
-            height = imageBefore.getBoundingClientRect().height; //imageBefore.style.clip = 'rect(0px, ' + width / 2 + 'px, ' + height + 'px, 0px)';
-        // imageBefore.style.clip = 'rect(0px, ' + width / 2 + 'px, 999px, 0px)';
+      view.sliderButton.forEach(function (sliderButton) {
+        var sliderButtonWidth = sliderButton.getBoundingClientRect().width,
+            imageBefore = sliderButton.nextElementSibling,
+            imageBeforeWidth = imageBefore.getBoundingClientRect().width;
+        var mouseDown = false,
+            mousePosition; // IE and Edge 'clip' fallback, since clip-path is not supported
 
-        var mouseDownX = false,
-            X;
-        element.style.left = width / 2 - sliderButtonWidth / 2 + 'px';
-        element.addEventListener('mousedown', function (event) {
-          X = event.clientX;
-          mouseDownX = true;
+        imageBefore.style.clip = "rect(0px, ".concat(imageBeforeWidth / 2, "px, 9999px, 0px)");
+        imageBefore.style.clipPath = "inset(0 ".concat(imageBeforeWidth / 2, "px 0 0)");
+        sliderButton.style.left = "".concat(imageBeforeWidth / 2 - sliderButtonWidth / 2, "px");
+        sliderButton.addEventListener('mousedown', function (event) {
+          mousePosition = event.clientX;
+          mouseDown = true;
         });
-        element.addEventListener('touchstart', function (event) {
-          X = event.touches[0].clientX;
-          mouseDownX = true;
+        sliderButton.addEventListener('touchstart', function (event) {
+          mousePosition = event.touches[0].clientX;
+          mouseDown = true;
         });
-        element.addEventListener('mouseup', function (event) {
-          return mouseDownX = false;
+        sliderButton.addEventListener('mouseup', function () {
+          return mouseDown = false;
         });
-        element.addEventListener('touchend', function (event) {
-          return mouseDownX = false;
+        sliderButton.addEventListener('touchend', function () {
+          return mouseDown = false;
         });
-        element.addEventListener('mouseout', function (event) {
-          return mouseDownX = false;
+        sliderButton.addEventListener('mouseout', function () {
+          return mouseDown = false;
         });
-        element.addEventListener('mousemove', function () {
-          if (mouseDownX) {
-            this.style.left = parseInt(this.style.left) + (event.clientX - X) + 'px';
-            X = event.clientX;
-            this.nextElementSibling.style.clip = 'rect(0px, ' + (this.getBoundingClientRect().width / 2 + parseInt(this.style.left)) + 'px, ' + this.getBoundingClientRect().height + 'px, 0px)';
+        sliderButton.addEventListener('mousemove', function (event) {
+          if (mouseDown) {
+            var sliderButtonPosition = parseInt(sliderButton.style.left);
+            sliderButton.style.left = "".concat(sliderButtonPosition + (event.clientX - mousePosition), "px");
+            mousePosition = event.clientX; // IE and Edge 'clip' fallback, since clip-path is not supported
+
+            imageBefore.style.clip = "rect(0px, ".concat(sliderButton.getBoundingClientRect().width / 2 + sliderButtonPosition, "px, ").concat(sliderButton.getBoundingClientRect().height, "px, 0px)");
+            imageBefore.style.clipPath = "inset(0 ".concat(imageBefore.getBoundingClientRect().width - sliderButtonPosition - sliderButton.getBoundingClientRect().width / 2, "px 0 0)");
           }
         });
-        element.addEventListener('touchmove', function (event) {
-          if (mouseDownX) {
-            this.style.left = parseInt(this.style.left) + (event.touches[0].clientX - X) + 'px';
-            X = event.touches[0].clientX;
-            this.nextElementSibling.style.clip = 'rect(0px, ' + (this.getBoundingClientRect().width / 2 + parseInt(this.style.left)) + 'px, ' + this.getBoundingClientRect().height + 'px, 0px)';
+        sliderButton.addEventListener('touchmove', function (event) {
+          if (mouseDown) {
+            var sliderButtonPosition = parseInt(sliderButton.style.left);
+            sliderButton.style.left = "".concat(sliderButtonPosition + (event.touches[0].clientX - mousePosition), "px");
+            mousePosition = event.touches[0].clientX; // IE and Edge 'clip' fallback, since clip-path is not supported
+
+            imageBefore.style.clip = "rect(0px, ".concat(sliderButton.getBoundingClientRect().width / 2 + sliderButtonPosition, "px, ").concat(sliderButton.getBoundingClientRect().height, "px, 0px)");
+            imageBefore.style.clipPath = "inset(0 ".concat(imageBefore.getBoundingClientRect().width - sliderButtonPosition - sliderButton.getBoundingClientRect().width / 2, "px 0 0)");
           }
         });
       });
-      window.addEventListener('load', function (f) {
-        var sliderButtonre = document.querySelectorAll('.imageComparison__sliderButton');
-        var ii = sliderButtonre.length;
-
-        while (ii--) {
-          var sliderButtonWidth = sliderButtonre[ii].getBoundingClientRect().width;
-          var imageBefore = sliderButtonre[ii].nextElementSibling;
-          var width = imageBefore.getBoundingClientRect().width;
-          var height = imageBefore.getBoundingClientRect().height;
-          sliderButtonre[ii].style.left = width / 2 - sliderButtonWidth / 2 + 'px';
-          imageBefore.style.clip = 'rect(0px, ' + width / 2 + 'px, ' + height + 'px, 0px)';
-        }
-      });
-      window.addEventListener('resize', function (f) {
-        var sliderButtonre = document.querySelectorAll('.imageComparison__sliderButton');
-        var ii = sliderButtonre.length;
-
-        while (ii--) {
-          var sliderButtonWidth = sliderButtonre[ii].getBoundingClientRect().width;
-          var imageBefore = sliderButtonre[ii].nextElementSibling;
-          var width = imageBefore.getBoundingClientRect().width;
-          var height = imageBefore.getBoundingClientRect().height;
-          sliderButtonre[ii].style.left = width / 2 - sliderButtonWidth / 2 + 'px';
-          imageBefore.style.clip = 'rect(0px, ' + width / 2 + 'px, ' + height + 'px, 0px)';
-        }
-      });
-    } // init: function (element) {
-    //     const view = this;
-    //         view.el = element;
-    //         view.variables();
-    //         view.initComparison();
-    // },
-    // variables: function () {
-    //     const view = this;
-    //     view.container = view.el.querySelectorAll('.imageComparison__container');
-    // },
-    // initComparison: function () {
-    //     const view = this;
-    //     const compareImages = img => {
-    //         let clicked = false;
-    //         // get the width and height of the img element
-    //         const slideButton = img.previousElementSibling,
-    //             imageWidth = img.offsetWidth,
-    //             imageHeight = img.offsetHeight;
-    //         img.style.width = (imageWidth / 2) + 'px';
-    //         // position the slider in the middle:
-    //         slideButton.style.top = (imageHeight / 2) - (slideButton.offsetHeight / 2) + 'px';
-    //         slideButton.style.left = (imageWidth / 2) - (slideButton.offsetWidth / 2) + 'px';
-    //         const slideReady = event => {
-    //             event.preventDefault();
-    //             clicked = true;
-    //             window.addEventListener('mousemove', slideMove);
-    //             window.addEventListener('touchmove', slideMove);
-    //         }
-    //         const slideFinish = () => clicked = false;
-    //         const slideMove = event => {
-    //             let cursorPosition;
-    //             if (!clicked) return false;
-    //             // get the cursor's x position:
-    //             (event = event || window.event) && (cursorPosition = event.pageX - img.getBoundingClientRect().left - window.pageXOffset);
-    //             // prevent the slider from being positioned outside the image:
-    //             cursorPosition < 0
-    //                 ? cursorPosition = 0
-    //                 : cursorPosition > imageWidth && (cursorPosition = imageWidth);
-    //             img.style.width = cursorPosition + 'px';
-    //             slideButton.style.left = img.offsetWidth - (slideButton.offsetWidth / 2) + 'px';
-    //         }
-    //         slideButton.addEventListener('mousedown', slideReady);
-    //         slideButton.addEventListener('touchstart', slideReady);
-    //         window.addEventListener('mouseup', slideFinish);
-    //         window.addEventListener('touchstop', slideFinish);
-    //     }
-    //     view.el.querySelectorAll('.imageComparison__overlayedImage').forEach(element => compareImages(element));
-    // }
-
+    }
   };
 };

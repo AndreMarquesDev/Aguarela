@@ -8,18 +8,6 @@ footer {
         justify-content: space-between;
         align-items: center;
 
-        > a {
-            color: $black;
-            line-height: 17px;
-            border-bottom: 1px solid $black;
-            @include transition;
-
-            &:hover {
-                border-bottom: 1px solid transparent;
-            }
-
-        }
-
         img {
             margin-left: 25px;
         }

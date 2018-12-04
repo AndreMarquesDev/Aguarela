@@ -36,9 +36,9 @@
             margin-right: 0;
         }
 
-        &:hover {
-            color: $blue;
-        }
+        // &:hover {
+        //     color: $blue;
+        // }
 
         a {
             display: block;
@@ -98,3 +98,48 @@
     }
 
 }
+
+// .link-menu {
+//     width: 24px;
+//     height: 26px;
+//     margin-right: 0;
+//     display: block;
+//             position: absolute;
+//             top: 35px;
+//             right: 20px;
+//             font-size: 30px;
+//     i {
+//         span {
+//             content: '';
+//             height: 2px;
+//             display: block;
+//             background-color: $black;
+//             margin: 5px 0;
+//             border-radius: 4px;
+//             @include transition ($duration: .25s, $ease: ease-in-out);
+//         }
+//         &:before, &:after {
+//             content: '';
+//             height: 2px;
+//             display: block;
+//             position: relative;
+//             background-color: $black;
+//             margin: 5px 0;
+//             border-radius: 4px;
+//             @include transition ($duration: .5s, $ease: ease-in-out);
+//         }
+//     }
+//     &.open {
+//         i {
+//             span {
+//                 transform: scale(0);
+//             }
+//             &:before {
+//                 transform: translateY(7px) rotate(45deg);
+//             }
+//             &:after {
+//                 transform: translateY(-7px) rotate(-45deg);
+//             }
+//         }
+//     }
+// }
