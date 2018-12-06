@@ -19,6 +19,7 @@
 // Animated link underline //
 
 .link {
+    display: inline-block;
     position: relative;
 
     &:after {

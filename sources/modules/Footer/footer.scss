@@ -7,16 +7,15 @@ footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
 
-        img {
-            margin-left: 25px;
-        }
+    img {
+        margin-left: 25px;
+    }
 
-        p a:hover img {
-            opacity: 0.55;
-            @include transition;
-        }
-
+    p a:hover img {
+        opacity: 0.55;
+        @include transition;
     }
 
     @include tablet {
@@ -26,24 +25,24 @@ footer {
             flex-wrap: wrap;
             flex-direction: column-reverse;
 
-            > a {
-                display: none;
+            > * {
+                margin-top: 10px;
             }
 
-            p {
-                font-size: 0;
+        }
 
-                a {
-                    display: block;
-                    font-size: 15px;
-                }
+        p {
+            display: inline-flex;
+            font-size: 0;
 
+            a {
+                font-size: 15px;
             }
 
-            img {
-                margin-left: 0;
-            }
+        }
 
+        img {
+            margin-left: 0;
         }
 
     }

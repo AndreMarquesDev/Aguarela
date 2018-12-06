@@ -1,15 +1,7 @@
 .clientsList {
-    @include fontS;
     text-align: center;
 
-    .wrapper {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
     h2 {
-        flex-basis: 100%;
         @include fontGiant;
         color: $pink;
         font-weight: $fontBold;
@@ -18,21 +10,23 @@
         margin-bottom: 70px;
     }
 
-    article {
-        max-width: 152px;
-        margin-right: 70px;
-
-        &:last-child {
-            margin-right: 0;
-        }
-
+    &__container {
+        max-width: 800px;
+        display: flex;
+        justify-content: space-around;
+        margin: auto;
     }
 
-    a {
-        height: 100%;
+    article {
+        max-width: 192px;
+        @include fontS;
+        transform: translateY(-4px);
+        box-shadow: $boxShadow;
+        @include transition;
 
-        &:hover figure {
-            transform: scale(1.1);
+        &:hover {
+        transform: translateY(0);
+            box-shadow: $boxShadowHover;
         }
 
     }
@@ -42,7 +36,6 @@
         height: 150px;
         margin-bottom: 20px;
         overflow: hidden;
-        @include transition ($duration: .3s);
 
         img {
             width: 100%;
@@ -55,15 +48,13 @@
 
     p {
         color: $mediumGrey;
+        margin: 20px;
     }
 
     @include tablet {
-        line-height: 21px;
 
-        .wrapper {
+        &__container {
             flex-direction: column;
-            justify-content: center;
-            align-content: center;
         }
 
         h2 {
@@ -78,6 +69,11 @@
                 margin: 0 auto;
             }
 
+        }
+
+        figure img {
+            width: auto;
+            height: 100%;
         }
 
     }
