@@ -25,7 +25,7 @@
         @include transition;
 
         &:hover {
-        transform: translateY(0);
+            transform: translateY(0);
             box-shadow: $boxShadowHover;
         }
 

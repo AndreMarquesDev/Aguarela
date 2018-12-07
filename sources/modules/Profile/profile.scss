@@ -49,6 +49,7 @@
     @include tablet {
         article {
             flex-wrap: wrap;
+            text-align: center;
         }
 
         figure {
@@ -58,6 +59,7 @@
 
         .resume {
             flex-basis: 100%;
+            margin-left: 0;
             margin-top: 40px;
         }
 

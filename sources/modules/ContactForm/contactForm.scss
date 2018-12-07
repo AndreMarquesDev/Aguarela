@@ -65,8 +65,7 @@
 
         button {
             display: block;
-            @include fontM;
-            font-style: italic;
+            color: $white;
             margin: auto;
             cursor: pointer;
         }
@@ -128,99 +127,3 @@
     }
 
 }
-
-// .systemNotifications {
-//     max-width: 900px;
-//     width: 90%;
-//     display: flex;
-//     align-items: center;
-//     position: fixed;
-//     bottom: -200px;
-//     left: 50%;
-//     transform: translateX(-50%);
-//     @include font-s ($neu-07);
-//     text-align: left;
-//     background: rgba(133, 231, 47, 0.1);
-//     border: 1px solid $neu-07;
-//     border-radius: 5px;
-//     padding: 7px 25px 7px 10px;
-//     z-index: 5;
-
-//     > i {
-//         margin-right: 18px;
-//     }
-
-//     > p {
-//         flex: 2;
-//         font-weight: $fontLight;
-//         padding-right: 20px;
-
-//         strong {
-//             font-weight: $fontRegular;
-//         }
-
-//         a {
-//             color: inherit;
-//             font-weight: $fontRegular;
-//         }
-
-//     }
-
-//     &__close {
-//         font-weight: $fontBold;
-//         text-transform: uppercase;
-//         color: inherit;
-//     }
-
-//     &.show {
-//         animation: systemNotificationsShow .4s;
-//         bottom: 50px;
-//     }
-
-//     &.hide {
-//         animation: systemNotificationsClose .4s;
-//     }
-
-//     &.success {
-//         color: #85e72f;
-//         background: #f2fcea;
-//         border-color: #85e72f;
-//     }
-
-//     &.error {
-//         color: #f41313;
-//         background: #fef3f3;
-//         border-color: #f41313;
-//     }
-
-//     &.info {
-//         color: $add-02;
-//         background: #eef3ff;
-//         border-color: $add-02;
-//     }
-
-//     &.warning {
-//         color: $add-06;
-//         background: #fff7e5;
-//         border-color: $add-06;
-//     }
-
-//     @include mobile {
-//         padding: 15px 20px;
-
-//         > i {
-//             display: none;
-//         }
-
-//         &.show {
-//             animation: systemNotificationsMobileShow .4s;
-//             bottom: 20px;
-//         }
-
-//         &.hide {
-//             animation: systemNotificationsMobileClose .4s;
-//         }
-
-//     }
-
-// }

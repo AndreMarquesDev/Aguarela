@@ -4,10 +4,26 @@
     font-weight: $fontBold;
     text-align: center;
 
-    h1 {
+    h1, h2 {
         @include fontGiant;
         text-transform: uppercase;
         letter-spacing: 10px;
+    }
+
+    &__services {
+        display: none;
+    }
+
+    @include tablet {
+        &[data-services="true"] .wrapper {
+            >:not(.simpleHeading__services) {
+                display: none;
+            }
+
+            .simpleHeading__services {
+                display: block;
+            }
+        }
     }
 
 }
