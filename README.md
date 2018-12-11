@@ -1,7 +1,8 @@
-# Aguarela Creations
-Small website for Aguarela Creations by Catarina Santiago, a Content Marketing Agency
+# Aguarela Project
+Micro-website for Aguarela Project by Catarina Santiago, a Content Marketing Agency
 
-https://andremarquesdev.github.io/Aguarela
+https://www.aguarelaproject.com
+
 
 André Marques
 https://github.com/AndreMarquesDev

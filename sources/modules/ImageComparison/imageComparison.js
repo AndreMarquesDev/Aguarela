@@ -4,12 +4,12 @@ Aguarela.imageComparison = (() => {
 
     return {
 
-        init: function (element) {
+        init: function(element) {
             const view = this;
-                view.el = element;
+            view.el = element;
 
-                view.variables();
-                view.initComparison();
+            view.variables();
+            view.initComparison();
         },
 
         variables: function() {

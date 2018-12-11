@@ -9,22 +9,19 @@ Aguarela.main = function () {
     init: function init(selector) {
       Aguarela.utils().init();
       typeof selector == 'undefined' && (selector = '');
-      $(selector + '[data-script]').not('[data-auto-init="false"]').each(function (index, elem) {
-        var data = $(elem).data(),
-            script = data.script;
+      document.querySelectorAll("".concat(selector, "[data-script]:not([data-auto-init=\"false\"])")).forEach(function (element) {
+        var script = element.dataset.script;
         if (!Aguarela[script]) return;
 
         if (typeof Aguarela[script] === 'function') {
-          var obj = new Aguarela[script]();
-          obj.init(elem, data);
-        } else if (_typeof(Aguarela[script]) === 'object') {
-          Aguarela[script].init(elem, data);
-        }
+          var scriptsObject = new Aguarela[script]();
+          scriptsObject.init(element);
+        } else if (_typeof(Aguarela[script]) === 'object') Aguarela[script].init(element);
       });
     }
   };
-}();
+};
 
 document.addEventListener('DOMContentLoaded', function () {
-  return Aguarela.main.init();
+  return Aguarela.main().init();
 });

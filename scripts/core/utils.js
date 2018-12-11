@@ -8,7 +8,7 @@ Aguarela.utils = function () {
   return {
     init: function init() {
       var view = this;
-      view.polyfills(); // view.initHover3D();
+      view.polyfills();
     },
     polyfills: function polyfills() {
       // Matches polyfill
@@ -56,67 +56,6 @@ Aguarela.utils = function () {
 
         return null;
       };
-    },
-    initHover3D: function initHover3D(container, inner) {
-      // Setup
-      // <div class="container">
-      //     <div class="inner"></div>
-      // </div>
-      // .container {
-      //     width: 500px;
-      //     height: 500px;
-      //     background: lightgreen;
-      //     margin: auto auto 100px;
-      //     position: relative;
-      //     perspective: 40px;
-      //     // padding: 40px;
-      // }
-      // .inner {
-      //     width: 100%;
-      //     height: 100%;
-      //     background: rgb(42, 141, 173);
-      //     box-shadow: $boxShadow;
-      //     @include transition;
-      //     perspective: 40px;
-      // }
-      // correr com Aguarela.utils().initHover3D(view.container, view.inner)
-      var updateRate = 10;
-      var centerX,
-          centerY,
-          x,
-          y,
-          counter = 0;
-
-      var setOrigin = function setOrigin(element) {
-        centerX = element.offsetWidth / 2 + element.offsetLeft;
-        centerY = element.offsetHeight / 2 + element.offsetTop;
-      };
-
-      var updateTransform = function updateTransform(event) {
-        event = event || window.event;
-        x = event.clientX - centerX;
-        y = -(event.clientY - centerY);
-        inner.style.transform = "rotateX(".concat(y / inner.offsetHeight / 2, "deg) rotateY(").concat(x / inner.offsetWidth / 2, "deg)");
-      };
-
-      var isTimeToUpdate = function isTimeToUpdate() {
-        return counter++ % updateRate === 0;
-      }; // Allows to track the mouse position relatively to the center of the element
-
-
-      setOrigin(container);
-      event.type === 'mouseenter' && isTimeToUpdate() && updateTransform(event);
-      event.type === 'mousemove' && updateTransform(event);
-      event.type === 'mouseleave' && (inner.style = '');
-      container.addEventListener('mouseenter', function (event) {
-        return isTimeToUpdate() && updateTransform(event);
-      });
-      container.addEventListener('mousemove', function (event) {
-        return updateTransform(event);
-      });
-      container.addEventListener('mouseleave', function () {
-        return inner.style = '';
-      });
     }
   };
 };

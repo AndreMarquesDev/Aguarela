@@ -1,6 +1,6 @@
-let Aguarela = Aguarela || {};
+const Aguarela = Aguarela || {};
 
-Aguarela.main = (() => {
+Aguarela.main = () => {
 
     return {
         init: (selector) => {
@@ -8,21 +8,18 @@ Aguarela.main = (() => {
 
             (typeof selector == 'undefined') && (selector = '');
 
-            $(selector + '[data-script]').not('[data-auto-init="false"]').each((index, elem) => {
-                const data = $(elem).data(),
-                      script = data.script;
+            document.querySelectorAll(`${selector}[data-script]:not([data-auto-init="false"])`).forEach(element => {
+                const script = element.dataset.script;
 
                 if (!Aguarela[script]) return;
 
                 if (typeof Aguarela[script] === 'function') {
-                    const obj = new Aguarela[script];
-                    obj.init(elem, data);
-                } else if (typeof Aguarela[script] === 'object') {
-                    Aguarela[script].init(elem, data);
-                }
+                    const scriptsObject = new Aguarela[script];
+                    scriptsObject.init(element);
+                } else if (typeof Aguarela[script] === 'object') Aguarela[script].init(element);
             });
         }
     }
-}) ();
+};
 
-document.addEventListener('DOMContentLoaded', () => Aguarela.main.init());
+document.addEventListener('DOMContentLoaded', () => Aguarela.main().init());

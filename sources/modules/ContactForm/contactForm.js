@@ -4,14 +4,15 @@ Aguarela.contactForm = (() => {
 
     return {
 
-        init: function (element) {
+        init: function(element) {
             const view = this;
-                view.el = element;
-                view.variables();
-                view.formHandler();
+            view.el = element;
+
+            view.variables();
+            view.formHandler();
         },
 
-        variables: function () {
+        variables: function() {
             const view = this;
 
             view.form = view.el.querySelector('form');
@@ -20,7 +21,7 @@ Aguarela.contactForm = (() => {
 
         },
 
-        formHandler: function () {
+        formHandler: function() {
             const view = this;
             let formSubmitted = false;
 

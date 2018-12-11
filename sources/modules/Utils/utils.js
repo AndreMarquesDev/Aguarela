@@ -4,11 +4,10 @@ Aguarela.utils = (() => {
 
     return {
 
-        init: function () {
+        init: function() {
             const view = this;
 
             view.polyfills();
-            // view.initHover3D();
         },
 
         polyfills: () => {
@@ -57,68 +56,6 @@ Aguarela.utils = (() => {
                     } while (ancestor !== null);
                 return null;
             };
-        },
-
-        initHover3D: (container, inner) => {
-            // Setup
-
-            // <div class="container">
-            //     <div class="inner"></div>
-            // </div>
-
-            // .container {
-            //     width: 500px;
-            //     height: 500px;
-            //     background: lightgreen;
-            //     margin: auto auto 100px;
-            //     position: relative;
-            //     perspective: 40px;
-            //     // padding: 40px;
-            // }
-
-            // .inner {
-            //     width: 100%;
-            //     height: 100%;
-            //     background: rgb(42, 141, 173);
-            //     box-shadow: $boxShadow;
-            //     @include transition;
-            //     perspective: 40px;
-            // }
-
-            // correr com Aguarela.utils().initHover3D(view.container, view.inner)
-
-            const updateRate = 10;
-
-            let centerX,
-                centerY,
-                x,
-                y,
-                counter = 0;
-
-            const setOrigin = element => {
-                centerX = element.offsetWidth / 2 + element.offsetLeft;
-                centerY = element.offsetHeight / 2 + element.offsetTop;
-            }
-
-            const updateTransform = event => {
-                event = event || window.event;
-                x = event.clientX - centerX;
-                y = -(event.clientY - centerY);
-                inner.style.transform = `rotateX(${y / inner.offsetHeight / 2}deg) rotateY(${x / inner.offsetWidth / 2}deg)`;
-            }
-
-            const isTimeToUpdate = () => counter++ % updateRate === 0;
-
-            // Allows to track the mouse position relatively to the center of the element
-            setOrigin(container);
-
-            event.type === 'mouseenter' && isTimeToUpdate() && updateTransform(event);
-            event.type === 'mousemove' && updateTransform(event);
-            event.type === 'mouseleave' && (inner.style = '');
-
-            container.addEventListener('mouseenter', event => isTimeToUpdate() && updateTransform(event));
-            container.addEventListener('mousemove', event => updateTransform(event));
-            container.addEventListener('mouseleave', () => inner.style = '');
         }
 
     }

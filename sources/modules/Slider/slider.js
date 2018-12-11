@@ -4,14 +4,14 @@ Aguarela.slider = (() => {
 
     return {
 
-        init: function (element) {
+        init: function(element) {
             const view = this;
-                view.$el = $(element);
-                view.el = element;
+            view.$el = $(element);
+            view.el = element;
 
-                view.variables();
-                view.events();
-                view.initSlider();
+            view.variables();
+            view.events();
+            view.initSlider();
 
         },
 
@@ -28,7 +28,7 @@ Aguarela.slider = (() => {
             window.addEventListener('scroll', () => view.playWhenVisible())
         },
 
-        initSlider: function () {
+        initSlider: function() {
             const view = this;
 
             view.sliderContainer = view.$el.find('.slider__sliderContainer');

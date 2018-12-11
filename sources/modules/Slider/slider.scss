@@ -3,6 +3,7 @@
     @include fontM;
     color: $white;
     text-align: center;
+    overflow: hidden;
 
     h3 {
         @include fontXXL;
