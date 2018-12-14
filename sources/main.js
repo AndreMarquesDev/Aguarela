@@ -3,7 +3,7 @@ const Aguarela = Aguarela || {};
 Aguarela.main = () => {
 
     return {
-        init: (selector) => {
+        init(selector) {
             Aguarela.utils().init();
 
             (typeof selector == 'undefined') && (selector = '');

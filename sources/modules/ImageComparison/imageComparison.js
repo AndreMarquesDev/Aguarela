@@ -4,7 +4,7 @@ Aguarela.imageComparison = (() => {
 
     return {
 
-        init: function(element) {
+        init(element) {
             const view = this;
             view.el = element;
 
@@ -12,14 +12,14 @@ Aguarela.imageComparison = (() => {
             view.initComparison();
         },
 
-        variables: function() {
+        variables() {
             const view = this;
 
             view.sliderButton = view.el.querySelectorAll('.imageComparison__sliderButton');
 
         },
 
-        initComparison: function() {
+        initComparison() {
             const view = this;
 
             view.sliderButton.forEach(sliderButton => {

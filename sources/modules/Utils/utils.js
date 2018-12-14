@@ -4,13 +4,13 @@ Aguarela.utils = (() => {
 
     return {
 
-        init: function() {
+        init() {
             const view = this;
 
             view.polyfills();
         },
 
-        polyfills: () => {
+        polyfills() {
             // Matches polyfill
             if (!Element.prototype.matches) {
                 Element.prototype.matches =

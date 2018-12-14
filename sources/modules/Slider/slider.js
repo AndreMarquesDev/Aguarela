@@ -4,7 +4,7 @@ Aguarela.slider = (() => {
 
     return {
 
-        init: function(element) {
+        init(element) {
             const view = this;
             view.$el = $(element);
             view.el = element;
@@ -15,20 +15,20 @@ Aguarela.slider = (() => {
 
         },
 
-        variables: function() {
+        variables() {
             const view = this;
 
             view.wasAutoplayed = false;
         },
 
-        events: function() {
+        events() {
             const view = this;
 
             window.addEventListener('resize', () => view.playWhenVisible())
             window.addEventListener('scroll', () => view.playWhenVisible())
         },
 
-        initSlider: function() {
+        initSlider() {
             const view = this;
 
             view.sliderContainer = view.$el.find('.slider__sliderContainer');
@@ -56,17 +56,17 @@ Aguarela.slider = (() => {
 
         },
 
-        playYoutube: video => {
+        playYoutube(video) {
             const videoURL = video.getAttribute('src');
             video && !/autoplay=1/i.test(videoURL) && video.setAttribute('src', videoURL.replace('autoplay=0', 'autoplay=1'));
         },
 
-        pauseYoutube: video => {
+        pauseYoutube(video) {
             const videoURL = video.getAttribute('src');
             video && /autoplay=1/i.test(videoURL) && video.setAttribute('src', videoURL.replace('autoplay=1', 'autoplay=0'));
         },
 
-        isInViewport: element => {
+        isInViewport(element) {
             const elementTop = element.getBoundingClientRect().top + element.offsetHeight,
                 elementBottom = elementTop + element.offsetHeight,
                 viewportTop = window.scrollY,
@@ -74,7 +74,7 @@ Aguarela.slider = (() => {
             return elementBottom > viewportTop && elementTop < viewportBottom;
         },
 
-        playWhenVisible: function() {
+        playWhenVisible() {
             const view = this;
 
             const video = view.el.querySelector('.slick-current video');

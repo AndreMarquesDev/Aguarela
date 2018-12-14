@@ -4,21 +4,21 @@ Aguarela.mainNav = (() => {
 
     return {
 
-        init: function(element) {
+        init(element) {
             const view = this;
             view.el = element;
 
             view.events();
         },
 
-        events: function() {
+        events() {
             const view = this;
 
             view.el.querySelector('.mainNav__menuIcon').addEventListener('click', view.openMenu.bind(view));
 
         },
 
-        openMenu: function() {
+        openMenu() {
             const view = this;
 
             view.el.classList.toggle('open');
