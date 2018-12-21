@@ -1,3 +1,5 @@
+'serviceWorker' in navigator && navigator.serviceWorker.register('serviceWorker.js');
+
 const Aguarela = Aguarela || {};
 
 Aguarela.main = () => {
