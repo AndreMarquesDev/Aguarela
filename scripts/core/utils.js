@@ -25,10 +25,21 @@ Aguarela.utils = function () {
 
 
       if (!Array.prototype.includes) {
-        Array.prototype.includes = function () {
-          'use strict';
+        Object.defineProperty(Array.prototype, 'includes', {
+          enumerable: false,
+          value: function value(obj) {
+            var newArr = this.filter(function (el) {
+              return el == obj;
+            });
+            return newArr.length > 0;
+          }
+        });
+      }
 
-          return Array.prototype.indexOf.apply(this, arguments) !== -1;
+      if (!String.prototype.includes) {
+        String.prototype.includes = function (search, start) {
+          typeof start !== 'number' && (start = 0);
+          if (start + search.length > this.length) return false;else return this.indexOf(search, start) !== -1;
         };
       } // Nodelist forEach polyfill
 
@@ -55,7 +66,53 @@ Aguarela.utils = function () {
         } while (ancestor !== null);
 
         return null;
-      };
+      }; // Dataset polyfill
+
+      if (!document.documentElement.dataset && (!Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'dataset') || !Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'dataset').get)) {
+        var descriptor = {};
+        descriptor.enumerable = true;
+
+        descriptor.get = function get() {
+          var element = this,
+              map = {},
+              attributes = this.attributes;
+
+          function toUpperCase(n0) {
+            return n0.charAt(1).toUpperCase();
+          }
+
+          function getter() {
+            return this.value;
+          }
+
+          function setter(name, value) {
+            if (typeof value !== 'undefined') this.setAttribute(name, value);else this.removeAttribute(name);
+          }
+
+          for (var i = 0; i < attributes.length; i++) {
+            var attribute = attributes[i]; // This test really should allow any XML Name without
+            // colons (and non-uppercase for XHTML)
+
+            if (attribute && attribute.name && /^data-\w[\w-]*$/.test(attribute.name)) {
+              var name = attribute.name,
+                  value = attribute.value; // Change to CamelCase
+
+              var propName = name.substr(5).replace(/-./g, toUpperCase);
+              Object.defineProperty(map, propName, {
+                enumerable: descriptor.enumerable,
+                get: getter.bind({
+                  value: value || ''
+                }),
+                set: setter.bind(element, name)
+              });
+            }
+          }
+
+          return map;
+        };
+
+        Object.defineProperty(HTMLElement.prototype, 'dataset', descriptor);
+      }
     }
   };
 };
