@@ -19,6 +19,9 @@ Aguarela.main = function () {
           scriptsObject.init(element);
         } else if (_typeof(Aguarela[script]) === 'object') Aguarela[script].init(element);
       });
+      console.log('%c| 🔧 Developed by AndreMarquesDev ✏️ Designed by Aguarela Project |', 'background: #000; color: #fff;');
+      console.log('%c| https://github.com/AndreMarquesDev |', 'background: #000; color: #fff;');
+      console.log('%c| https://codepen.io/AndreMarquesDev/ |', 'background: #000; color: #fff;');
     }
   };
 };
