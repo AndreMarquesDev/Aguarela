@@ -12,107 +12,92 @@ Aguarela.utils = function () {
     },
     polyfills: function polyfills() {
       // Matches polyfill
-      if (!Element.prototype.matches) {
-        Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || Element.prototype.webkitMatchesSelector || function (s) {
-          var matches = (this.document || this.ownerDocument).querySelectorAll(s),
-              i = matches.length;
+      Element.prototype.matches || (Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || Element.prototype.webkitMatchesSelector || function (a) {
+        var b = (this.document || this.ownerDocument).querySelectorAll(a),
+            c = b.length;
 
-          while ((_readOnlyError("i"), --i) >= 0 && matches.item(i) !== this) {}
+        for (; 0 <= (_readOnlyError("c"), --c) && b.item(c) !== this;) {
+          ;
+        }
 
-          return i > -1;
-        };
-      } // Includes polyfill
+        return -1 < c;
+      }); // Includes polyfill
 
+      Array.prototype.includes || Object.defineProperty(Array.prototype, 'includes', {
+        enumerable: !1,
+        value: function value(a) {
+          var b = this.filter(function (c) {
+            return c == a;
+          });
+          return 0 < b.length;
+        }
+      });
+      String.prototype.includes || (String.prototype.includes = function (a, b) {
+        return 'number' != typeof b && (b = 0), !(b + a.length > this.length) && -1 !== this.indexOf(a, b);
+      }); // Nodelist forEach polyfill
 
-      if (!Array.prototype.includes) {
-        Object.defineProperty(Array.prototype, 'includes', {
-          enumerable: false,
-          value: function value(obj) {
-            var newArr = this.filter(function (el) {
-              return el == obj;
-            });
-            return newArr.length > 0;
-          }
-        });
-      }
+      window.NodeList && !NodeList.prototype.forEach && (NodeList.prototype.forEach = function (a, b) {
+        b = b || window;
 
-      if (!String.prototype.includes) {
-        String.prototype.includes = function (search, start) {
-          typeof start !== 'number' && (start = 0);
-          if (start + search.length > this.length) return false;else return this.indexOf(search, start) !== -1;
-        };
-      } // Nodelist forEach polyfill
+        for (var c = 0; c < this.length; c++) {
+          a.call(b, this[c], c, this);
+        }
+      }); // Closest polyfill
 
-
-      if (window.NodeList && !NodeList.prototype.forEach) {
-        NodeList.prototype.forEach = function (callback, thisArg) {
-          thisArg = thisArg || window;
-
-          for (var i = 0; i < this.length; i++) {
-            callback.call(thisArg, this[i], i, this);
-          }
-        };
-      } // Closest polyfill
-
-
-      if (!Element.prototype.closest) Element.prototype.closest = function (s) {
-        var el = this,
-            ancestor = this;
-        if (!document.documentElement.contains(el)) return null;
+      Element.prototype.closest || (Element.prototype.closest = function (a) {
+        var b = this,
+            c = this;
+        if (!document.documentElement.contains(b)) return null;
 
         do {
-          if (ancestor.matches(s)) return ancestor;
-          ancestor = ancestor.parentElement;
-        } while (ancestor !== null);
+          if (c.matches(a)) return c;
+          c = c.parentElement;
+        } while (null !== c);
 
         return null;
-      }; // Dataset polyfill
+      }); // Dataset polyfill
 
       if (!document.documentElement.dataset && (!Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'dataset') || !Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'dataset').get)) {
-        var descriptor = {};
-        descriptor.enumerable = true;
-
-        descriptor.get = function get() {
-          var element = this,
-              map = {},
-              attributes = this.attributes;
-
-          function toUpperCase(n0) {
-            return n0.charAt(1).toUpperCase();
+        var a = {};
+        a.enumerable = !0, a.get = function () {
+          function c(j) {
+            return j.charAt(1).toUpperCase();
           }
 
-          function getter() {
+          function d() {
             return this.value;
           }
 
-          function setter(name, value) {
-            if (typeof value !== 'undefined') this.setAttribute(name, value);else this.removeAttribute(name);
+          function e(j, k) {
+            'undefined' == typeof k ? this.removeAttribute(j) : this.setAttribute(j, k);
           }
 
-          for (var i = 0; i < attributes.length; i++) {
-            var attribute = attributes[i]; // This test really should allow any XML Name without
-            // colons (and non-uppercase for XHTML)
+          var f = this,
+              g = {},
+              h = this.attributes;
 
-            if (attribute && attribute.name && /^data-\w[\w-]*$/.test(attribute.name)) {
-              var name = attribute.name,
-                  value = attribute.value; // Change to CamelCase
+          for (var j = 0; j < h.length; j++) {
+            var k = h[j];
 
-              var propName = name.substr(5).replace(/-./g, toUpperCase);
-              Object.defineProperty(map, propName, {
-                enumerable: descriptor.enumerable,
-                get: getter.bind({
-                  value: value || ''
+            if (k && k.name && /^data-\w[\w-]*$/.test(k.name)) {
+              var l = k.name,
+                  m = k.value,
+                  n = l.substr(5).replace(/-./g, c);
+              Object.defineProperty(g, n, {
+                enumerable: a.enumerable,
+                get: d.bind({
+                  value: m || ''
                 }),
-                set: setter.bind(element, name)
+                set: e.bind(f, l)
               });
             }
           }
 
-          return map;
-        };
-
-        Object.defineProperty(HTMLElement.prototype, 'dataset', descriptor);
+          return g;
+        }, Object.defineProperty(HTMLElement.prototype, 'dataset', a);
       }
+
+      ;
     }
   };
 };

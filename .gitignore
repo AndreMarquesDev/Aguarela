@@ -22,3 +22,4 @@ docker-compose.yml
 
 .sass-cache
 /.vs
+sources/package-lock.json
