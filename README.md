@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5b19ee57-1711-4531-abd4-51daf946d92b/deploy-status)](https://www.aguarelaproject.com)
+
 # Aguarela Project
 Micro-website for Aguarela Project by Catarina Santiago, a Content Marketing Agency  
 
